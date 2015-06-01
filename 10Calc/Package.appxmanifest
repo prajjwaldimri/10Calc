@@ -1,41 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest" xmlns:m3="http://schemas.microsoft.com/appx/2014/manifest" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest">
-
-  <Identity Name="aa42c3eb-cc2a-4484-9b36-c4364471dded"
-            Publisher="CN=Prajjwal"
-            Version="1.0.0.0" />
-
-  <mp:PhoneIdentity PhoneProductId="aa42c3eb-cc2a-4484-9b36-c4364471dded" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
-
+  <Identity Name="34691PrajjwalDimri.10CalcBeta" Publisher="CN=883EF119-9F3F-4348-A873-0DBB7FD085E0" Version="1.1.3.3" />
+  <mp:PhoneIdentity PhoneProductId="349fe393-97f8-4a6b-b8da-12d272a1af95" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>10Calc</DisplayName>
+    <DisplayName>10Calc Beta</DisplayName>
     <PublisherDisplayName>Prajjwal</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
-
   <Prerequisites>
     <OSMinVersion>6.3.1</OSMinVersion>
     <OSMaxVersionTested>6.3.1</OSMaxVersionTested>
   </Prerequisites>
-  
   <Resources>
-    <Resource Language="x-generate"/>
+    <Resource Language="x-generate" />
   </Resources>
-
   <Applications>
-    <Application Id="App"
-        Executable="$targetnametoken$.exe"
-        EntryPoint="_10Calc.App">
-        <m3:VisualElements
-            DisplayName="10Calc"
-            Square150x150Logo="Assets\Logo.png"
-            Square44x44Logo="Assets\SmallLogo.png"
-            Description="10Calc"
-            ForegroundText="light"
-            BackgroundColor="transparent">
-            <m3:DefaultTile Wide310x150Logo="Assets\WideLogo.png" Square71x71Logo="Assets\Square71x71Logo.png"/>
-            <m3:SplashScreen Image="Assets\SplashScreen.png"/>
-        </m3:VisualElements>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="_10Calc.App">
+      <m3:VisualElements DisplayName="10Calc Beta" Square150x150Logo="Assets\Logo.png" Square44x44Logo="Assets\SmallLogo.png" Description="10Calc is a calculator with methods never seen before in any calculator app." ForegroundText="light" BackgroundColor="#000000">
+        <m3:DefaultTile Wide310x150Logo="Assets\WideLogo.png" Square71x71Logo="Assets\Square71x71Logo.png">
+          <m3:ShowNameOnTiles>
+            <m3:ShowOn Tile="square150x150Logo" />
+            <m3:ShowOn Tile="wide310x150Logo" />
+          </m3:ShowNameOnTiles>
+        </m3:DefaultTile>
+        <m3:SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#000000" />
+        <m3:InitialRotationPreference>
+          <m3:Rotation Preference="portrait" />
+        </m3:InitialRotationPreference>
+      </m3:VisualElements>
     </Application>
   </Applications>
   <Capabilities>

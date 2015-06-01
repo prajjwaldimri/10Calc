@@ -1,0 +1,51 @@
+﻿<Page
+    x:Class="_10Calc.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:_10Calc"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <TextBlock Text="10Calc"
+                   Grid.Row="0"
+                   FontSize="30"
+                   Foreground="{ThemeResource PhoneAccentBrush}"
+                   FontFamily="/Fonts/againts.ttf#Againts"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Top" FontWeight="Bold"/>
+        <Image HorizontalAlignment="Center" Source="Assets/AppTile.png"
+               Height="100" VerticalAlignment="Top" Width="Auto" Margin="0,0,0,0"/>
+        <ScrollViewer>
+            <TextBlock ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                   ScrollViewer.VerticalScrollBarVisibility="Auto" 
+                   TextWrapping="Wrap"
+                   FontSize="20" VerticalAlignment="Bottom" Margin="0,120,0,0">
+             10Calc Build: 1.1.3.3<LineBreak/> <LineBreak/>
+            Update(Changelogs):<LineBreak/>
+            1. Added Programmer's Calculator<LineBreak/>
+            <LineBreak/><LineBreak/>
+            Issues (known): <LineBreak/>
+            1. <LineBreak/>
+            <LineBreak/>
+            Features Missing: <LineBreak/>
+            1. Unorthodox Calculator<LineBreak/>
+            2. Addition of proper tutorial page.<LineBreak/>
+            
+            <LineBreak/><LineBreak/>
+            Note: Please try to verify the results provided by calculator using any means which you trust.<LineBreak/> As in early stages 10Calc may display wrong results, therefore regular use is not encouraged. <LineBreak/> 
+            <LineBreak/><LineBreak/>
+                You can send your suggestions, feedbacks and report bugs at: debugstudios@outlook.com
+                <LineBreak/>
+            You can contact me personally at:
+            Email: prajjwaldimri@outlook.com
+            Twitter: @prajjwaldimri
+            Ello: @prajjwaldimri
+            reddit: prajjwaldimri
+        </TextBlock>
+        </ScrollViewer>
+        
+    </Grid>
+</Page>

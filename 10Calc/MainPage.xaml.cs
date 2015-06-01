@@ -1,7 +1,9 @@
 ﻿using System;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using _10Calc.Pages;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=391641
 
@@ -15,8 +17,24 @@ namespace _10Calc
         public MainPage()
         {
             InitializeComponent();
-
+            
             NavigationCacheMode = NavigationCacheMode.Required;
+
+            var rpn = new ReversePolishNotation();
+
+            Loaded += Page_Loaded;
+
+            
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            var settings = ApplicationData.Current.LocalSettings;
+            if (!settings.Values.ContainsKey("WasLaunched"))
+            {
+                if (Frame != null) Frame.Navigate(typeof(IntroPage));
+                settings.Values.Add("WasLaunched", true);
+            }
         }
 
         /// <summary>
@@ -26,6 +44,9 @@ namespace _10Calc
         /// This parameter is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            
+           
+            
             // TODO: Prepare page for display here.
 
             // TODO: If your application contains multiple pages, ensure that you are
@@ -35,10 +56,14 @@ namespace _10Calc
             // this event is handled for you.
         }
 
-        public double num1 { get; set; }
-        public double num2 { get; set; }
-        public string op { get; set; }
+        public double Num1 { get; set; }
+        public double Num2 { get; set; }
+        public string Op = "";
+        public double Num3 { get; set; }
+        public string Log { get; set; }
        // public bool checker { get; set; }
+
+       
        
         private void ButtonBase_OnClick1(object sender, RoutedEventArgs e)
         {
@@ -110,12 +135,14 @@ namespace _10Calc
         {
             CalculateTextBlock.Text += Buttonobrac.Content;
             ShowTextBlock.Text += Buttonobrac.Content.ToString();
+            Op = "brac";
         }
 
         private void ButtonBase_OnClickcbrac(object sender, RoutedEventArgs e)
         {
             CalculateTextBlock.Text += Buttoncbrac.Content;
             ShowTextBlock.Text += Buttoncbrac.Content.ToString();
+            Op = "brac";
         }
 
 
@@ -128,77 +155,119 @@ namespace _10Calc
 
         private void ButtonBase_OnClickperc(object sender, RoutedEventArgs e)
         {
-            num1 = Convert.ToDouble(CalculateTextBlock.Text);
-            op = "perc";
-            CalculateTextBlock.Text = "";
-            ShowTextBlock.Text = "";
+            if (Op == "brac")
+            {
+                CalculateTextBlock.Text += "";
+                ShowTextBlock.Text += "";
+            }
+            else
+            {
+                Op = "";
+                Num2 = Convert.ToDouble(CalculateTextBlock.Text);
+                CalculateTextBlock.Text = "";
+                ShowTextBlock.Text = "";
+                CalculateTextBlock.Text = ((Num1*Num2)/100).ToString();
+                Num1 = 0;
+                Num2 = 0;
+            }
+
         }
 
         private void ButtonBase_OnClickupon(object sender, RoutedEventArgs e)
         {
-            if(CalculateTextBlock.Text!="")
+            if(CalculateTextBlock.Text!="" && Op!="brac")
             {
-            num1 = Convert.ToDouble(CalculateTextBlock.Text);
-            op = "upon";
+            Num1 = Convert.ToDouble(CalculateTextBlock.Text);
+            Op = "upon";
             CalculateTextBlock.Text = "";
             ShowTextBlock.Text = "";
-            num2 = 1/num1;
-            CalculateTextBlock.Text = num2.ToString();
-            num1 = 0;
+            Num2 = Math.Round(1/Num1,15);
+            CalculateTextBlock.Text = Num2.ToString();
+            Num1 = 0;
             ShowTextBlock.Text = "";
             }
             else
             {
-                CalculateTextBlock.Text = "";
+                if (Op == "brac")
+                {
+                    CalculateTextBlock.Text = "";
+                    ShowTextBlock.Text += "";
+                }
+                else
+                {
+                    CalculateTextBlock.Text = "";
+                }
             }
         }
 
         private void ButtonBase_OnClicksquare(object sender, RoutedEventArgs e)
         {
-            if(CalculateTextBlock.Text!="")
+            if(CalculateTextBlock.Text!="" && Op!="brac")
             {
-            num1 = Convert.ToDouble(CalculateTextBlock.Text);
+            Num1 = Convert.ToDouble(CalculateTextBlock.Text);
             CalculateTextBlock.Text = "";
             ShowTextBlock.Text = "";
-            num2 = num1*num1;
-            CalculateTextBlock.Text = num2.ToString();
-            num1 = 0;
+            Num2 = Num1*Num1;
+            CalculateTextBlock.Text = Num2.ToString();
+            Num1 = 0;
             ShowTextBlock.Text = "";
             }
             else
             {
-                CalculateTextBlock.Text = "";
+                if (Op == "brac")
+                {
+                    CalculateTextBlock.Text += "^2";
+                    ShowTextBlock.Text += "^2";
+                }
+                else
+                {
+                    CalculateTextBlock.Text = "";
+                }
             }
         }
 
         private void ButtonBase_OnClickroot(object sender, RoutedEventArgs e)
         {
-            if(CalculateTextBlock.Text!="")
+            if(CalculateTextBlock.Text!="" && Op!="brac")
             {
-            num1 = Convert.ToDouble(CalculateTextBlock.Text);
+            Num1 = Convert.ToDouble(CalculateTextBlock.Text);
             CalculateTextBlock.Text = "";
             ShowTextBlock.Text = "";
-            num2 = Math.Sqrt(num1);
-            CalculateTextBlock.Text = num2.ToString();
-            num1 = 0;
+            Num2 = Math.Sqrt(Num1);
+            CalculateTextBlock.Text = Num2.ToString();
+            Num1 = 0;
             ShowTextBlock.Text = ""; 
             }
             else
             {
-                CalculateTextBlock.Text = "";
+                if (Op == "brac")
+                {
+                    CalculateTextBlock.Text += "√";
+                    ShowTextBlock.Text += "√";
+                }
+                else
+                {
+                    CalculateTextBlock.Text = "";
+                }
             }
         }
 
         private void ButtonBase_OnClickbackspace(object sender, RoutedEventArgs e)
         {
-            if (CalculateTextBlock.Text == "")
+            if (CalculateTextBlock.Text == "" && ShowTextBlock.Text=="")
             {
                 CalculateTextBlock.Text = "";
+                ShowTextBlock.Text = "";
             }
             else
             {
                 string mystring = CalculateTextBlock.Text;
                 string showstring = ShowTextBlock.Text;
+                if (CalculateTextBlock.Text == "")
+                {
+                    CalculateTextBlock.Text = "";
+                }
+                else
                 CalculateTextBlock.Text = mystring.Substring(0, mystring.Length - 1);
                 if (ShowTextBlock.Text == "")
                     ShowTextBlock.Text = "";
@@ -212,73 +281,211 @@ namespace _10Calc
 
         private void ButtonBase_OnClicklog(object sender, RoutedEventArgs e)
         {
-            if(CalculateTextBlock.Text!="")
+            if(CalculateTextBlock.Text!="" && Op!="brac")
             {
-            num1 = Convert.ToDouble(CalculateTextBlock.Text);
+            Num1 = Convert.ToDouble(CalculateTextBlock.Text);
             CalculateTextBlock.Text = "";
             ShowTextBlock.Text = "";
-            num2 = Math.Log10(num1);
-            CalculateTextBlock.Text = num2.ToString();
-            num1 = 0;
+            Num2 = Math.Log10(Num1);
+            CalculateTextBlock.Text = Num2.ToString();
+            Num1 = 0;
             }
             else
             {
-                CalculateTextBlock.Text = "";
+                if (Op == "brac")
+                {
+                    CalculateTextBlock.Text += "(log";
+                    ShowTextBlock.Text += "(log";
+                }
+                else
+                {
+                    CalculateTextBlock.Text = "log";
+                    ShowTextBlock.Text += "log" + CalculateTextBlock.Text.Substring(3, CalculateTextBlock.Text.Length - 3);
+                    Op = "log";
+                }
             }
             
         }
 
         private void ButtonBase_OnClickplus(object sender, RoutedEventArgs e)
         {
-            //num1 += double.Parse(CalculateTextBlock.Text);
-            if (num2!=0)
+            if (Op == "brac")
             {
-                ShowTextBlock.Text = num2.ToString();
+                ShowTextBlock.Text += "+";
+                CalculateTextBlock.Text += "+";
             }
-            if(CalculateTextBlock.Text!="")
+            else if (Op == "sub")
             {
-            num1 = Convert.ToDouble(CalculateTextBlock.Text);
-            op = "plus";
-            CalculateTextBlock.Text = "";
-            ShowTextBlock.Text += "+";
-            }
-            else
-            {
+                Num1 -= Convert.ToDouble(CalculateTextBlock.Text);
+                Op = "plus";
                 CalculateTextBlock.Text = "";
+                ShowTextBlock.Text += "+";
             }
+            else if (Op == "mul")
+            {
+                Num1 *= Convert.ToDouble(CalculateTextBlock.Text);
+                Op = "plus";
+                CalculateTextBlock.Text = "";
+                ShowTextBlock.Text += "+";
+            }
+            else if (Op == "div")
+            {
+                Num1 = Convert.ToDouble(CalculateTextBlock.Text);
+                Num2 = Num3/Num1;
+                Num1 = Num2;
+                CalculateTextBlock.Text = "";
+                ShowTextBlock.Text += "+";
+                Op = "plus";
+            }
+           else if (Op == "log")
+           {
+               Num1 = Convert.ToDouble(CalculateTextBlock.Text.Substring(3, CalculateTextBlock.Text.Length - 3));
+               Num2 += Math.Log10(Num1);
+               CalculateTextBlock.Text = "";
+               ShowTextBlock.Text += "+";
+               Num1 = 0;
+               Log = "plus";
+           }
+           else if (Op == "" || Op == "plus")
+           {
+               if (Num2 != 0)
+               {
+                   ShowTextBlock.Text = Num2.ToString();
+               }
+               if (CalculateTextBlock.Text != "")
+               {
+                   Num1 += Convert.ToDouble(CalculateTextBlock.Text);
+                   Op = "plus";
+                   CalculateTextBlock.Text = "";
+                   ShowTextBlock.Text += "+";
+               }
+               else
+               {
+                   CalculateTextBlock.Text = "";
+               }
+           }
         }
 
         private void ButtonBase_OnClickminus(object sender, RoutedEventArgs e)
         {
-            if (num2 != 0)
+            if (Op == "brac")
             {
-                ShowTextBlock.Text = num2.ToString();
+                CalculateTextBlock.Text += "-";
+                ShowTextBlock.Text += "-";
             }
-            if(CalculateTextBlock.Text!="")
+            else if (Op == "plus")
             {
-            num1 += double.Parse(CalculateTextBlock.Text);
-            op = "sub";
-            CalculateTextBlock.Text = "";
-            ShowTextBlock.Text += "-";
-            }
-            else
-            {
+                Num1 += Convert.ToDouble(CalculateTextBlock.Text);
+                Op = "sub";
                 CalculateTextBlock.Text = "";
+                ShowTextBlock.Text += "-";
+            }
+            else if (Op == "mul")
+            {
+                Num1 *= Convert.ToDouble(CalculateTextBlock.Text);
+                Op = "sub";
+                CalculateTextBlock.Text = "";
+                ShowTextBlock.Text += "-";
+            }
+            else if (Op == "div")
+            {
+                Num1 = Convert.ToDouble(CalculateTextBlock.Text);
+                Num2 = Num3 / Num1;
+                Num1 = Num2;
+                CalculateTextBlock.Text = "";
+                ShowTextBlock.Text += "-";
+                Op = "sub";
+            }
+
+            else if (Op == "log")
+            {
+                Num1 = Convert.ToDouble(CalculateTextBlock.Text.Substring(3, CalculateTextBlock.Text.Length - 3));
+                Num2 -= Math.Log10(Num1);
+                CalculateTextBlock.Text = "";
+                ShowTextBlock.Text += "-";
+                Num1 = 0;
+                Log = "plus";
+            }
+            else if (Op == "" || Op == "sub")
+            {
+                if (Num2 != 0)
+                {
+                    ShowTextBlock.Text = Num2.ToString();
+                }
+                if (CalculateTextBlock.Text != "")
+                {
+                    Num1 = double.Parse(CalculateTextBlock.Text);
+                    Op = "sub";
+                    CalculateTextBlock.Text = "";
+                    ShowTextBlock.Text += "-";
+                }
+                else
+                {
+                    CalculateTextBlock.Text = "";
+                }
             }
         }
 
         private void ButtonBase_OnClickmul(object sender, RoutedEventArgs e)
         {
-            if (num2 != 0)
+            if (Op == "brac")
             {
-                ShowTextBlock.Text = num2.ToString();
+                CalculateTextBlock.Text += "*";
+                ShowTextBlock.Text += "*";
             }
-            if (CalculateTextBlock.Text != "")
+            else if (Op == "plus")
             {
-                num1 += double.Parse(CalculateTextBlock.Text);
-                op = "mul";
+                Num1 += Convert.ToDouble(CalculateTextBlock.Text);
+                Op = "mul";
                 CalculateTextBlock.Text = "";
                 ShowTextBlock.Text += "*";
+            }
+            else if (Op == "sub")
+            {
+                Num1 -= Convert.ToDouble(CalculateTextBlock.Text);
+                Op = "mul";
+                CalculateTextBlock.Text = "";
+                ShowTextBlock.Text += "*";
+            }
+            else if (Op == "div")
+            {
+                Num1 = Convert.ToDouble(CalculateTextBlock.Text);
+                Num2 = Num3 / Num1;
+                Num1 = Num2;
+                CalculateTextBlock.Text = "";
+                ShowTextBlock.Text += "*";
+                Op = "mul";
+            }
+
+            else if (Op == "log")
+            {
+                if (Num2 == 0)
+                    Num2 = 1;
+                else
+                {
+                    Num1 = Convert.ToDouble(CalculateTextBlock.Text.Substring(3, CalculateTextBlock.Text.Length - 3));
+                    Num2 *= Math.Log10(Num1);
+                    CalculateTextBlock.Text = "";
+                    ShowTextBlock.Text += "*";
+                    Num1 = 0;
+                    Log = "mul";
+                }
+            }
+            else if (Op == "" || Op == "mul")
+            {
+                if (Num2 != 0)
+                {
+                    ShowTextBlock.Text = Num2.ToString();
+                }
+                if (Num1 == 0)
+                    Num1 = 1;
+                if (CalculateTextBlock.Text != "")
+                {
+                    Num1 *= double.Parse(CalculateTextBlock.Text);
+                    Op = "mul";
+                    CalculateTextBlock.Text = "";
+                    ShowTextBlock.Text += "*";
+                }
             }
             else
             {
@@ -288,20 +495,83 @@ namespace _10Calc
 
         private void ButtonBase_OnClickdiv(object sender, RoutedEventArgs e)
         {
-            if (num2 != 0)
+            if (Op == "brac")
             {
-                ShowTextBlock.Text = num2.ToString();
+                CalculateTextBlock.Text += "/";
+                ShowTextBlock.Text += "/";
             }
-            if(CalculateTextBlock.Text!="")
+            else if (Op == "plus")
             {
-            num1 += double.Parse(CalculateTextBlock.Text);
-            op = "div";
-            CalculateTextBlock.Text = "";
-            ShowTextBlock.Text += "/";
-            }
-            else
-            {
+                Num1 += Convert.ToDouble(CalculateTextBlock.Text);
+                Op = "div";
                 CalculateTextBlock.Text = "";
+                ShowTextBlock.Text += "/";
+            }
+            else if (Op == "sub")
+            {
+                Num1 -= Convert.ToDouble(CalculateTextBlock.Text);
+                Op = "div";
+                CalculateTextBlock.Text = "";
+                ShowTextBlock.Text += "/";
+            }
+            else if (Op == "mul")
+            {
+                Num1 *= Convert.ToDouble(CalculateTextBlock.Text);
+                Op = "div";
+                CalculateTextBlock.Text = "";
+                ShowTextBlock.Text = "/";
+            }
+            else if (Op == "log")
+            {
+                if (Num3 == 0)
+                {
+                    Num3 = Math.Log10(Convert.ToDouble(CalculateTextBlock.Text.Substring(3, CalculateTextBlock.Text.Length - 3)));
+                    CalculateTextBlock.Text = "";
+                }
+                else
+                {
+                    Num1 =
+                        Math.Log10(
+                            Convert.ToDouble(CalculateTextBlock.Text.Substring(3, CalculateTextBlock.Text.Length - 3)));
+                    CalculateTextBlock.Text = "";
+                    Num2 = Num3 / Num1;
+                    Num3 = Num2;
+                    CalculateTextBlock.Text = "";
+                    ShowTextBlock.Text += "/";
+                    Num1 = 0;
+                    Log = "div";
+                }
+            }
+            else if (Op == "" || Op == "div")
+            {
+
+                if (Num2 != 0)
+                {
+                    ShowTextBlock.Text = Num2.ToString();
+                }
+                if (CalculateTextBlock.Text != "")
+                {
+                    if (Num3 == 0)
+                    {
+                        Num3 = double.Parse(CalculateTextBlock.Text);
+                        Op = "div";
+                        ShowTextBlock.Text += "/";
+                    }
+                    else
+                    {
+                        Num1 = double.Parse(CalculateTextBlock.Text);
+                        Num1 = Num3/Num1;
+                        Num3 = Num1;
+                        Op = "div";
+                        CalculateTextBlock.Text = "";
+                        ShowTextBlock.Text += "/";
+                    }
+                    CalculateTextBlock.Text = "";
+                }
+                else
+                {
+                    CalculateTextBlock.Text = "";
+                }
             }
         }
 
@@ -314,40 +584,134 @@ namespace _10Calc
             else
             {
 
-                switch (op)
+                switch (Op)
                 {
+                    case "brac":
+                        try
+                        {
+                            var rpn = new ReversePolishNotation();
+                            rpn.Parse(ShowTextBlock.Text);
+                            var result = rpn.Evaluate();
+                            CalculateTextBlock.Text = result.ToString();
+                        }
+                        catch (Exception)
+                        {
+
+                            CalculateTextBlock.Text = "Error!";
+                        }
+                        break;
+                        
+                    case "":
+                        Num2 = double.Parse(CalculateTextBlock.Text);
+                        break;
                     case "plus":
-                        num2 = num1 + double.Parse(CalculateTextBlock.Text);
+                        Num2 = Num1 + double.Parse(CalculateTextBlock.Text);
                         break;
 
                     case "sub":
-                        num2 = num1 - double.Parse(CalculateTextBlock.Text);
+                        Num2 = Num1 - double.Parse(CalculateTextBlock.Text);
                         break;
 
                     case "mul":
-                        num2 = num1*double.Parse(CalculateTextBlock.Text);
+                        Num2 = Num1*double.Parse(CalculateTextBlock.Text);
                         break;
 
                     case "div":
-                        num2 = num1/double.Parse(CalculateTextBlock.Text);
+                        Num2 = Num3/double.Parse(CalculateTextBlock.Text);
+                        break;
+
+                    case "log":
+                        switch (Log)
+                        {
+                            case "plus":
+
+                                Num1 =
+                                    Convert.ToDouble(CalculateTextBlock.Text.Substring(3, CalculateTextBlock.Text.Length - 3));
+                                Num2 += Math.Log10(Num1);
+                                ShowTextBlock.Text = "";
+                                break;
+                            case "minus":
+                                Num1 =
+                                    Convert.ToDouble(CalculateTextBlock.Text.Substring(3, CalculateTextBlock.Text.Length - 3));
+                                Num2 -= Math.Log10(Num1);
+                                ShowTextBlock.Text = "";
+                                break;
+                            case "mul":
+                                Num1 =
+                                    Convert.ToDouble(CalculateTextBlock.Text.Substring(3, CalculateTextBlock.Text.Length - 3));
+                                Num2 *= Math.Log10(Num1);
+                                ShowTextBlock.Text = "";
+                                break;
+                            case "div":
+                                Num1 =
+                                    Math.Log10(Convert.ToDouble(CalculateTextBlock.Text.Substring(3, CalculateTextBlock.Text.Length - 3)));
+                                Num2 = Num3 / Num1;
+                                ShowTextBlock.Text = "";
+                                break;
+                            default:
+                                Num1 =
+                                    Convert.ToDouble(CalculateTextBlock.Text.Substring(3, CalculateTextBlock.Text.Length - 3));
+                                Num2 += Math.Log10(Num1);
+                                ShowTextBlock.Text = "";
+                                break;
+                        }
                         break;
 
 
+
                 }
-                CalculateTextBlock.Text = num2.ToString();
-                num1 = 0;
-                ShowTextBlock.Text = "";
-                op = "";
+                if (Op == "brac")
+                {
+                    Op = "";
+                    ShowTextBlock.Text = "";
+                    Num1 = 0;
+                    Num3 = 0;
+
+                }
+                else
+                {
+                    CalculateTextBlock.Text = Num2.ToString();
+                    Num1 = 0;
+                    Num3 = 0;
+                    ShowTextBlock.Text = "";
+                    Op = "";
+                }
             }
         }
 
         private void ButtonBase_OnClickclear(object sender, RoutedEventArgs e)
         {
-            num1 = 0;
-            num2 = 0;
+            Num1 = 0;
+            Num2 = 0;
+            Num3 = 0;
             ShowTextBlock.Text = "";
             CalculateTextBlock.Text = "";
+            Op = "";
         }
 
+        private void ScientificButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof (Scientific));
+        }
+
+        private void AboutButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof (AboutPage));
+        }
+
+        private void UnitButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof (UnitConverter));
+        }
+
+        private void SettingsButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof (SettingsPage));
+        }
+
+        private void ProgrammerButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof (Programmer_s_Calculator));
+        }
     }
 }

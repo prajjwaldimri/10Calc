@@ -16,7 +16,7 @@ namespace _10Calc
     /// </summary>
     public sealed partial class App : Application
     {
-        private TransitionCollection transitions;
+        private TransitionCollection _transitions;
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -69,10 +69,10 @@ namespace _10Calc
                 // Removes the turnstile navigation for startup.
                 if (rootFrame.ContentTransitions != null)
                 {
-                    transitions = new TransitionCollection();
+                    _transitions = new TransitionCollection();
                     foreach (var c in rootFrame.ContentTransitions)
                     {
-                        transitions.Add(c);
+                        _transitions.Add(c);
                     }
                 }
 
@@ -100,7 +100,7 @@ namespace _10Calc
         private void RootFrame_FirstNavigated(object sender, NavigationEventArgs e)
         {
             var rootFrame = sender as Frame;
-            rootFrame.ContentTransitions = transitions ?? new TransitionCollection { new NavigationThemeTransition() };
+            rootFrame.ContentTransitions = _transitions ?? new TransitionCollection { new NavigationThemeTransition() };
             rootFrame.Navigated -= RootFrame_FirstNavigated;
         }
 

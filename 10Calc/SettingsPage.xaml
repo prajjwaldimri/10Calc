@@ -1,0 +1,47 @@
+﻿<Page
+    x:Class="_10Calc.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:_10Calc"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <ContinuumNavigationTransitionInfo/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+
+    <Grid x:Name="LayoutRoot">
+
+        <TextBlock Text="10Calc"
+                   Grid.Row="0"
+                   Foreground="{ThemeResource PhoneAccentBrush}"
+                   FontSize="30"
+                   FontFamily="/Fonts/againts.ttf#Againts"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Top" FontWeight="Bold"/>
+
+        <TextBlock Text="settings"
+                   Grid.Row="0"
+                   Foreground="{ThemeResource PhoneAccentBrush}"
+                   FontSize="30"
+                   FontFamily="Segoe UI"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Top"/>
+        
+        <Button HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Margin="0,80,0,0"
+                Click="ButtonBase_OnClick">
+            Reset First Run Status
+        </Button>
+
+    </Grid>
+</Page>

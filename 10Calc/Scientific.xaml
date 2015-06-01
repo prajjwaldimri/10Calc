@@ -1,0 +1,336 @@
+﻿<Page
+    x:Class="_10Calc.Scientific"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:_10Calc"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <SlideNavigationTransitionInfo/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
+    
+    <Page.Resources>
+        <Style TargetType="Button" x:Key= "MyButtonStyle">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontFamily" Value="source sans pro"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="Button" x:Key= "MyButtonStyle2">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontFamily" Value="source sans pro"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+    </Page.Resources>
+
+
+    <Pivot Margin="0,0,0,0">
+        <PivotItem Margin="0,0,0,0">
+
+            <Grid Name="RootGrid">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+
+
+
+
+                <Grid Grid.Row="1" Name="FunctionGrid"
+              HorizontalAlignment="Center" 
+              Margin="0,0,0,0"
+              
+              VerticalAlignment="Bottom" 
+               Background="#FFF3F3F3" Height="Auto" Width="Auto"
+              >
+
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Row="1" Grid.Column="0" BorderThickness="0,0,0,0" Content="sinx" Margin="0,0,0,10" Click="Buttonsin_OnClick" Name="Buttonsin" Style="{StaticResource MyButtonStyle}"/>
+                    <Button Grid.Row="1" Grid.Column="1" BorderThickness="0,0,0,0" Content="cosx" Margin="0,0,0,10" Click="Buttoncos_OnClick" Name="Buttoncos" Style="{StaticResource MyButtonStyle}"/>
+                    <Button Grid.Row="1" Grid.Column="2" BorderThickness="0,0,0,0" Content="tanx" Margin="0,0,0,10" Click="Buttontan_OnClick" Name="Buttontan" Style="{StaticResource MyButtonStyle}"/>
+                    <Button Grid.Row="1" Grid.Column="3" BorderThickness="0,0,0,0" Content="cotx" Margin="0,0,0,10" Click="Buttoncot_OnClick" Name="Buttoncot" Style="{StaticResource MyButtonStyle}"/>
+                    <Button Grid.Row="1" Grid.Column="4" BorderThickness="0,0,0,0" Content="secx" Margin="0,0,0,10" Click="Buttonsec_OnClick" Name="Buttonsec" Style="{StaticResource MyButtonStyle}"/>
+                    <Button Grid.Row="1" Grid.Column="5" BorderThickness="0,0,0,0" Content="cosecx" Margin="0,0,0,10" Click="Buttoncosec_OnClick" Name="Buttoncosec" Style="{StaticResource MyButtonStyle}"/>
+                    <Button Grid.Row="2" Grid.Column="5" BorderThickness="0,0,0,0" Content="!" Margin="0,0,0,10" Click="Buttonfact_OnClick" Name="Buttonfact" FontSize="25" Style="{StaticResource MyButtonStyle}"/>
+                    <Button Grid.Row="1" Grid.Column="0" BorderThickness="0,0,0,0" Margin="0,0,0,10" IsEnabled="False" Visibility="Collapsed" Click="Buttonasin_OnClick" Name="Buttonasin" Style="{StaticResource MyButtonStyle2}">
+                        <TextBlock>
+                    <Run>sin</Run>
+                    <Run Typography.Variants="Superscript">-1</Run>
+                            <Run>x</Run>
+                        </TextBlock>
+                    </Button>
+                    <Button Grid.Row="1" Grid.Column="1" BorderThickness="0,0,0,0"  Margin="0,0,0,10" IsEnabled="False" Visibility="Collapsed" Click="Buttonacos_OnClick" Name="Buttonacos" Style="{StaticResource MyButtonStyle2}">
+                        <TextBlock>
+                    <Run>cos</Run>
+                    <Run Typography.Variants="Superscript">-1</Run>
+                            <Run>x</Run>
+                        </TextBlock>
+                    </Button>
+                    <Button Grid.Row="1" Grid.Column="2" BorderThickness="0,0,0,0"  Margin="0,0,0,10" IsEnabled="False" Visibility="Collapsed" Click="Buttonatan_OnClick" Name="Buttonatan" Style="{StaticResource MyButtonStyle2}">
+                        <TextBlock>
+                    <Run>tan</Run>
+                    <Run Typography.Variants="Superscript">-1</Run>
+                            <Run>x</Run>
+                        </TextBlock>
+                    </Button>
+                    <Button Grid.Row="1" Grid.Column="3" BorderThickness="0,0,0,0"  Margin="0,0,0,10" IsEnabled="False" Visibility="Collapsed" Click="Buttonacot_OnClick" Name="Buttonacot" Style="{StaticResource MyButtonStyle2}">
+                        <TextBlock>
+                    <Run>cot</Run>
+                    <Run Typography.Variants="Superscript">-1</Run>
+                            <Run>x</Run>
+                        </TextBlock>
+                    </Button>
+                    <Button Grid.Row="1" Grid.Column="4" BorderThickness="0,0,0,0"  Margin="0,0,0,10" IsEnabled="False" Visibility="Collapsed" Click="Buttonasec_OnClick" Name="Buttonasec" Style="{StaticResource MyButtonStyle2}">
+                        <TextBlock>
+                    <Run>sec</Run>
+                    <Run Typography.Variants="Superscript">-1</Run>
+                            <Run>x</Run>
+                        </TextBlock>
+                    </Button>
+                    <Button Grid.Row="1" Grid.Column="5" BorderThickness="0,0,0,0" Margin="0,0,0,10" IsEnabled="False" Visibility="Collapsed" Click="Buttonacosec_OnClick" Name="Buttonacosec" Style="{StaticResource MyButtonStyle2}">
+                        <TextBlock>
+                    <Run>cosec</Run>
+                    <Run Typography.Variants="Superscript">-1</Run>
+                            <Run>x</Run>
+                        </TextBlock>
+                    </Button>
+                    <Button Grid.Row="5" Grid.Column="0" BorderThickness="0,0,0,0" Content="1" Margin="0,0,0,10" Click="ButtonBase_OnClick1" Name="Button1" Style="{StaticResource MyButtonStyle}" />
+                    <Button Grid.Row="5" Grid.Column="1" BorderThickness="0,0,0,0" Content="2" Margin="0,0,0,10" Click="ButtonBase_OnClick2" Name="Button2" Style="{StaticResource MyButtonStyle}"/>
+                    <Button Grid.Row="5" Grid.Column="2" BorderThickness="0,0,0,0" Content="3" Margin="0,0,0,10" Click="ButtonBase_OnClick3" Name="Button3" Style="{StaticResource MyButtonStyle}"/>
+                    <Button Grid.Row="4" Grid.Column="0" BorderThickness="0,0,0,0" Content="4" Margin="0,0,0,10" Click="ButtonBase_OnClick4" Name="Button4" Style="{StaticResource MyButtonStyle}"/>
+                    <Button Grid.Row="4" Grid.Column="1" BorderThickness="0,0,0,0" Content="5" Margin="0,0,0,10" Click="ButtonBase_OnClick5" Name="Button5" Style="{StaticResource MyButtonStyle}"/>
+                    <Button Grid.Row="4" Grid.Column="2" BorderThickness="0,0,0,0" Content="6" Margin="0,0,0,10" Click="ButtonBase_OnClick6" Name="Button6" Style="{StaticResource MyButtonStyle}"/>
+                    <Button Grid.Row="3" Grid.Column="0" BorderThickness="0,0,0,0" Content="7" Margin="0,0,0,10" Click="ButtonBase_OnClick7" Name="Button7" Style="{StaticResource MyButtonStyle}"/>
+                    <Button Grid.Row="3" Grid.Column="1" BorderThickness="0,0,0,0" Content="8" Margin="0,0,0,10" Click="ButtonBase_OnClick8" Name="Button8" Style="{StaticResource MyButtonStyle}"/>
+                    <Button Grid.Row="3" Grid.Column="2" BorderThickness="0,0,0,0" Content="9" Margin="0,0,0,10" Click="ButtonBase_OnClick9" Name="Button9" Style="{StaticResource MyButtonStyle}"/>
+                    <Button Grid.Row="5" Grid.Column="4" BorderThickness="0,0,0,0" Content="Pi" Margin="0,0,0,10" Click="ButtonBase_OnClickpi" Name="Buttonpi" Style="{StaticResource MyButtonStyle}"/>
+                    <Button Grid.Row="2" Grid.Column="2" BorderThickness="0,0,0,0" Content="%" Margin="0,0,0,10" Click="ButtonBase_OnClickperc" Name="Buttonperc" Style="{StaticResource MyButtonStyle}"/>
+                    <Button Grid.Row="2" Grid.Column="3" BorderThickness="0,0,0,0" Content="1/x" Margin="0,0,0,10" Click="ButtonBase_OnClickupon" Name="Buttonupon" Style="{StaticResource MyButtonStyle}"/>
+                    <Button Grid.Row="0" Grid.Column="3" BorderThickness="0,0,0,0" Content="^1/x" Margin="0,0,0,10" Click="ButtonBase_OnClickunderrootn" Name="Buttonunderrootn" Style="{StaticResource MyButtonStyle}"/>
+                    <Button Grid.Row="0" Grid.Column="4" BorderThickness="0,0,0,0" Content="DEG" Margin="0,0,0,10" Click="ButtonBase_OnClickdeg" Name="Buttondegree" Style="{StaticResource MyButtonStyle}"/>
+                    <Button Grid.Row="0" Grid.Column="5" BorderThickness="0,0,0,0" Content="RAD" Margin="0,0,0,10" Click="ButtonBase_OnClickrad" Name="Buttonrad" Style="{StaticResource MyButtonStyle}"/>
+                    <Button Grid.Row="0" Grid.Column="6" BorderThickness="0,0,0,0" Content="GRAD" Margin="0,0,0,10" Click="ButtonBase_OnClickgrad" Name="Buttongrad" Style="{StaticResource MyButtonStyle}"/>
+                    <Button Grid.Row="4" Grid.Column="4" BorderThickness="0,0,0,0" Margin="0,0,0,10" Click="ButtonBase_OnClickn" Name="Buttonn" Style="{StaticResource MyButtonStyle}">
+                        <TextBlock>
+                    <Run>x</Run>
+                    <Run Typography.Variants="Superscript">n</Run>
+                        </TextBlock>
+                    </Button>
+                    <Button Grid.Row="4" Grid.Column="5" BorderThickness="0,0,0,0" Margin="0,0,0,10" Click="ButtonBase_OnClicksquare" Name="Buttonsq" Style="{StaticResource MyButtonStyle}">
+                        <TextBlock>
+                    <Run>x</Run>
+                    <Run Typography.Variants="Superscript">2</Run>
+                        </TextBlock>
+                    </Button>
+                    <Button Grid.Row="5" Grid.Column="5" BorderThickness="0,0,0,0" Margin="0,0,0,10" Click="ButtonBase_OnClickcube" Name="Buttoncu" Style="{StaticResource MyButtonStyle}">
+                        <TextBlock>
+                    <Run>x</Run>
+                    <Run Typography.Variants="Superscript">3</Run>
+                        </TextBlock>
+                    </Button>
+                    <Button Grid.Row="6" Grid.Column="5" BorderThickness="0,0,0,0" Margin="0,0,0,10" Click="ButtonBase_OnClickfourpow" Name="Buttonfourpow" Style="{StaticResource MyButtonStyle}">
+                        <TextBlock>
+                    <Run>x</Run>
+                    <Run Typography.Variants="Superscript">4</Run>
+                        </TextBlock>
+                    </Button>
+                    <Button Grid.Row="3" Grid.Column="5" BorderThickness="0,0,0,0" Margin="0,0,0,10" Click="ButtonBase_OnClickex" Name="Buttonex" Style="{StaticResource MyButtonStyle}">
+                        <TextBlock>
+                    <Run>e</Run>
+                    <Run Typography.Variants="Superscript">x</Run>
+                        </TextBlock>
+                    </Button>
+                    <Button Grid.Row="0" Grid.Column="2" BorderThickness="0,0,0,0" Margin="0,0,0,10" Click="ButtonBase_OnClicklog" Name="Buttonlog" Style="{StaticResource MyButtonStyle}">
+                        <TextBlock>
+                    <Run>log</Run>
+                    <Run Typography.Variants="Subscript">10</Run>
+                        </TextBlock>
+                    </Button>
+                    <Button Grid.Row="0" Grid.Column="1" BorderThickness="0,0,0,0" Margin="0,0,0,10" Click="ButtonBase_OnClickloge" Name="Buttonloge" Style="{StaticResource MyButtonStyle}">
+                        <TextBlock>
+                    <Run>log</Run>
+                    <Run Typography.Variants="Subscript">e</Run>
+                        </TextBlock>
+                    </Button>
+                    <Button Grid.Row="0" Grid.Column="0" BorderThickness="0,0,0,0" Margin="-26,-6,31.167,9" Click="ButtonBase_OnClicklogn" Name="Buttonlogn" Style="{StaticResource MyButtonStyle}" Grid.ColumnSpan="2">
+                        <TextBlock>
+                    <Run>log</Run>
+                    <Run Typography.Variants="Subscript">n</Run>
+                        </TextBlock>
+                    </Button>
+                    <Button Grid.Row="2" Grid.Column="4" BorderThickness="0,0,0,0" Margin="0,0,0,10" Click="ButtonBase_OnClickbackspace" Name="Buttonbackspace" Style="{StaticResource MyButtonStyle}">
+                        <Image Source="Assets/appbar.clear.inverse.reflect.horizontal.png"></Image>
+                    </Button>
+                    <Button Grid.Row="3" Grid.Column="4" BorderThickness="0,0,0,0" Margin="0,0,0,10" Click="ButtonBase_OnClickroot" Name="Buttonroot" Style="{StaticResource MyButtonStyle}">
+                        <Image Source="Assets/square106.png" MaxHeight="40" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                    </Button>
+                    <Button Grid.Row="2" Grid.Column="0" BorderThickness="0,0,0,0" Content="(" Margin="0,0,0,10" Click="ButtonBase_OnClickobrac" Name="Buttonobrac" Style="{StaticResource MyButtonStyle}"/>
+                    <Button Grid.Row="2" Grid.Column="1" BorderThickness="0,0,0,0" Content=")" Margin="0,0,0,10" Click="ButtonBase_OnClickcbrac" Name="Buttoncbrac" Style="{StaticResource MyButtonStyle}"/>
+                    <Button Grid.Row="6" Grid.Column="1" BorderThickness="0,0,0,0" Content="0" Margin="0,0,0,10" Click="ButtonBase_OnClick0" Name="Button0" Style="{StaticResource MyButtonStyle}"/>
+                    <Button Grid.Row="6" Grid.Column="2" BorderThickness="0,0,0,0" Content="." Margin="0,0,0,10" Click="ButtonBase_OnClickdot" Name="Buttondot" Style="{StaticResource MyButtonStyle}"/>
+                    <Button Grid.Row="6" Grid.Column="4" BorderThickness="0,0,0,0" Margin="0,0,0,10" Click="ButtonBase_OnClickplusminus" Name="Buttonplusminus" Style="{StaticResource MyButtonStyle}">
+                        <Image Source="Assets/plus48.png"/>
+                    </Button>
+                    <Button Grid.Row="3" Grid.Column="3" BorderThickness="0,0,0,0" Margin="0,0,0,10" Click="ButtonBase_OnClickplus" Name="Buttonplus" 
+                    Style="{StaticResource MyButtonStyle}" Background="Transparent">
+                        <Image Source="Assets/plus49.png" MaxHeight="40" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                    </Button>
+                    <Button Grid.Row="4" Grid.Column="3" BorderThickness="0,0,0,0" Margin="0,0,0,10" Click="ButtonBase_OnClickminus" Name="Buttonminus" Style="{StaticResource MyButtonStyle}">
+                        <Image Source="Assets/minus42.png" MaxHeight="30" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                    </Button>
+                    <Button Grid.Row="5" Grid.Column="3" BorderThickness="0,0,0,0" Margin="0,0,0,10" Click="ButtonBase_OnClickmul" Name="Buttonmul" Style="{StaticResource MyButtonStyle}">
+                        <Image Source="Assets/multiply2.png" MaxHeight="30" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                    </Button>
+                    <Button Grid.Row="6" Grid.Column="3" BorderThickness="0,0,0,0" Margin="0,0,0,10" Click="ButtonBase_OnClickdiv" Name="Buttondiv" Style="{StaticResource MyButtonStyle}">
+                        <Image Source="Assets/divide2.png" MaxHeight="30" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                    </Button>
+                    <Button Grid.Row="6" Grid.Column="6" BorderThickness="0,0,0,0" Margin="0,0,0,10" Click="ButtonBase_OnClickequal" Name="Buttonequal" Style="{StaticResource MyButtonStyle}" Foreground="SpringGreen" FontWeight="ExtraBold">
+                        <Image Source="Assets/equal2.png" MaxHeight="30" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
+                    </Button>
+                    <Button Grid.Row="6" Grid.Column="0" BorderThickness="0,0,0,0" Content="C" Margin="0,0,0,10" Click="ButtonBase_OnClickclear" Name="Buttonclear" Style="{StaticResource MyButtonStyle}" Foreground="{ThemeResource PhoneAccentBrush}"/>
+                    <ToggleButton Grid.Row="1" Grid.Column="6" BorderThickness="0,0,32,0" HorizontalAlignment="Left" Margin="0,0,0,10" Name="Buttonswitch"  Foreground="Red" Checked="Buttonswitch_Checked" Unchecked="Buttonswitch_Unchecked">
+                        <Image Source="Assets/appbar.arrow.down.up.png" HorizontalAlignment="Left" />
+                    </ToggleButton>
+
+
+
+                </Grid>
+
+                <TextBlock Text="10Calc"
+                   Grid.Row="0"
+                   Foreground="{ThemeResource PhoneAccentBrush}"
+                   FontSize="30"
+                   FontFamily="/Fonts/againts.ttf#Againts"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Top" FontWeight="Bold"/>
+
+                <TextBlock Name="ShowTextBlock" Grid.Row="0"
+            HorizontalAlignment="Right" 
+            TextWrapping="Wrap" 
+            FontSize="25"
+            VerticalAlignment="Bottom"
+                   Margin="0,0,0,140"
+                   />
+
+                <TextBlock Name="CalculateTextBlock" Grid.Row="0" 
+            TextWrapping="Wrap"
+            FontSize="45"
+                           HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+                       />
+
+
+            </Grid>
+        </PivotItem>
+        <PivotItem >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="4*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Button Name="SimpleCalculator" BorderThickness="0,0,0,0" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"
+                    Height="Auto" Width="Auto" Grid.Row="0" Click="SimpleButton_OnClick" >
+                    <Image Source="Assets/calculator41.png"></Image>
+
+                </Button>
+                <Button  Name="ProgrammerButton" BorderThickness="0,0,0,0"  HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"
+                    Height="Auto" Width="Auto" Grid.Row="1" Grid.Column="0">
+                    <Image Source="Assets/DZone.png"></Image>
+                </Button>
+                <Button Name="UnitButton" BorderThickness="0,0,0,0"  HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"
+                    Height="Auto" Width="Auto" Grid.Row="0" Grid.Column="1" Click="UnitButton_OnClick">
+                    <Image Source="Assets/United States-Dollar.png"/>
+                </Button>
+                <Button Name="UnorthodoxButton" BorderThickness="0,0,0,0" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"
+                    Height="Auto" Width="Auto" Grid.Row="1" Grid.Column="1">
+                    <Image Source="Assets/infinite3.png"/>
+                </Button>
+                <Button Name="SettingsButton" BorderThickness="0,0,0,0" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"
+                   Height="Auto" Width="Auto" Grid.Row="2" Grid.Column="1" Click="SettingsButton_OnClick" >
+                    <Image Source="Assets/appbar.cogs.png"/>
+                </Button>
+                <Button Name="AboutButton" BorderThickness="0,0,0,0" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"
+                   Height="Auto" Width="Auto" Grid.Row="2" Grid.Column="0" Click="AboutButton_OnClick">
+                    <Image Source="Assets/appbar.information.circle.png"/>
+                </Button>
+                <TextBlock Grid.Row="0" Grid.Column="0" 
+                           VerticalAlignment="Bottom" 
+                           HorizontalAlignment="Center"
+                           FontSize="15">
+                    Simple Calculator</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="1"
+                           VerticalAlignment="Bottom" 
+                           HorizontalAlignment="Center"
+                           FontSize="15">
+                    Unit Converter
+                </TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="0" 
+                           VerticalAlignment="Bottom" 
+                           HorizontalAlignment="Center"
+                           FontSize="15">
+                    Programmer's Calculator
+                </TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="1" 
+                           VerticalAlignment="Bottom" 
+                           HorizontalAlignment="Center"
+                           FontSize="15">
+                    Unorthodox Calculator
+                </TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="0" 
+                           VerticalAlignment="Bottom" 
+                           HorizontalAlignment="Center"
+                           FontSize="25">
+                   About
+                </TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="1" 
+                           VerticalAlignment="Bottom" 
+                           HorizontalAlignment="Center"
+                           FontSize="25">
+                   Settings
+                </TextBlock>
+                <Rectangle Fill="SeaGreen" IsHitTestVisible="False" Grid.Column="1" Grid.Row="1" Opacity="0.3"/>
+                <Rectangle Fill="OrangeRed"  IsHitTestVisible="False" Grid.Column="0" Grid.Row="1" Opacity="0.3"/>
+                <Rectangle Fill="MediumVioletRed"  IsHitTestVisible="False" Grid.Column="1" Grid.Row="0" Opacity="0.3"/>
+                <Rectangle Fill="MediumSlateBlue"  IsHitTestVisible="False" Grid.Column="0" Grid.Row="0" Opacity="0.3"/>
+                <Rectangle Fill="MediumSlateBlue"  IsHitTestVisible="False" Grid.Column="0" Grid.Row="2" Opacity="0.3"/>
+                <Rectangle Fill="MistyRose"  IsHitTestVisible="False" Grid.Column="1" Grid.Row="2" Opacity="0.3"/>
+            </Grid>
+
+        </PivotItem>
+    </Pivot>
+</Page>

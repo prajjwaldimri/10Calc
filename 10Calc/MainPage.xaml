@@ -7,7 +7,17 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    
+
+
+    <Page.Transitions>
+        <TransitionCollection>
+            <NavigationThemeTransition>
+                <NavigationThemeTransition.DefaultNavigationTransitionInfo>
+                    <ContinuumNavigationTransitionInfo/>
+                </NavigationThemeTransition.DefaultNavigationTransitionInfo>
+            </NavigationThemeTransition>
+        </TransitionCollection>
+    </Page.Transitions>
 
     <Page.Resources>
         <Style TargetType="Button" x:Key= "MyButtonStyle">
@@ -17,12 +27,18 @@
             </Style>
     </Page.Resources>
 
+
+    <Pivot Margin="0,0,0,0">
+        <PivotItem Margin="0,0,0,0">
+          
     <Grid Name="RootGrid">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
+
+        
 
 
         <Grid Grid.Row="1" Name="FunctionGrid"
@@ -32,7 +48,7 @@
               VerticalAlignment="Bottom" 
               Width="Auto" Background="#FFF3F3F3"
               >
-
+            
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="2*"/>
@@ -80,8 +96,8 @@
             <Button Grid.Row="1" Grid.Column="4" BorderThickness="0,0,0,0" Margin="0,0,0,10" Click="ButtonBase_OnClickroot" Name="Buttonroot" Style="{StaticResource MyButtonStyle}">
                 <Image Source="Assets/square106.png" MaxHeight="40" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
             </Button>
-            <Button Grid.Row="0" Grid.Column="0" BorderThickness="0,0,0,0" Content="(" Margin="0,0,0,10" Click="ButtonBase_OnClickobrac" Name="Buttonobrac" Style="{StaticResource MyButtonStyle}"/>
-            <Button Grid.Row="0" Grid.Column="1" BorderThickness="0,0,0,0" Content=")" Margin="0,0,0,10" Click="ButtonBase_OnClickcbrac" Name="Buttoncbrac" Style="{StaticResource MyButtonStyle}"/>
+            <Button  Grid.Row="0" Grid.Column="0" BorderThickness="0,0,0,0" Content="(" Margin="0,0,0,10" Click="ButtonBase_OnClickobrac" Name="Buttonobrac" Style="{StaticResource MyButtonStyle}"/>
+            <Button  Grid.Row="0" Grid.Column="1" BorderThickness="0,0,0,0" Content=")" Margin="0,0,0,10" Click="ButtonBase_OnClickcbrac" Name="Buttoncbrac" Style="{StaticResource MyButtonStyle}"/>
             <Button Grid.Row="4" Grid.Column="1" BorderThickness="0,0,0,0" Content="0" Margin="0,0,0,10" Click="ButtonBase_OnClick0" Name="Button0" Style="{StaticResource MyButtonStyle}"/>
             <Button Grid.Row="4" Grid.Column="2" BorderThickness="0,0,0,0" Content="." Margin="0,0,0,10" Click="ButtonBase_OnClickdot" Name="Buttondot" Style="{StaticResource MyButtonStyle}"/>
             <Button Grid.Row="1" Grid.Column="3" BorderThickness="0,0,0,0" Margin="0,0,0,10" Click="ButtonBase_OnClickplus" Name="Buttonplus" 
@@ -100,7 +116,7 @@
             <Button Grid.Row="4" Grid.Column="4" BorderThickness="0,0,0,0" Margin="0,0,0,10" Click="ButtonBase_OnClickequal" Name="Buttonequal" Style="{StaticResource MyButtonStyle}" Foreground="SpringGreen" FontWeight="ExtraBold">
                 <Image Source="Assets/equal2.png" MaxHeight="30" HorizontalAlignment="Center" VerticalAlignment="Center"></Image>
             </Button>
-            <Button Grid.Row="4" Grid.Column="0" BorderThickness="0,0,0,0" Content="C" Margin="0,0,0,10" Click="ButtonBase_OnClickclear" Name="Buttonclear" Style="{StaticResource MyButtonStyle}" Foreground="Red"/>
+            <Button Grid.Row="4" Grid.Column="0" BorderThickness="0,0,0,0" Content="C" Margin="0,0,0,10" Click="ButtonBase_OnClickclear" Name="Buttonclear" Style="{StaticResource MyButtonStyle}" Foreground="{ThemeResource PhoneAccentBrush}"/>
 
 
 
@@ -108,6 +124,7 @@
 
         <TextBlock Text="10Calc"
                    Grid.Row="0"
+                   Foreground="{ThemeResource PhoneAccentBrush}"
                    FontSize="30"
                    FontFamily="/Fonts/againts.ttf#Againts"
                    HorizontalAlignment="Right"
@@ -124,8 +141,92 @@
         <TextBlock Name="CalculateTextBlock" Grid.Row="0" 
             TextWrapping="Wrap"
             FontSize="45"
+                   HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
                        />
+        
 
     </Grid>
+        </PivotItem>
+        <PivotItem >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="4*"/>
+                    <RowDefinition Height="4*"/>
+                    </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Button Name="ScientificButton" BorderThickness="0,0,0,0" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"
+                    Height="Auto" Width="Auto" Grid.Row="0" Click="ScientificButton_OnClick" >
+                    <Image Source="Assets/calculator42.png"></Image>
+                    
+                </Button>
+                <Button  Name="ProgrammerButton" BorderThickness="0,0,0,0"  HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"
+                    Height="Auto" Width="Auto" Grid.Row="1" Grid.Column="0" Click="ProgrammerButton_OnClick">
+                    <Image Source="Assets/DZone.png"></Image>
+                </Button>
+                <Button Name="UnitButton" BorderThickness="0,0,0,0"  HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"
+                    Height="Auto" Width="Auto" Grid.Row="0" Grid.Column="1" Click="UnitButton_OnClick">
+                    <Image Source="Assets/United States-Dollar.png"/>
+                </Button>
+                <Button Name="UnorthodoxButton" BorderThickness="0,0,0,0" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"
+                    Height="Auto" Width="Auto" Grid.Row="1" Grid.Column="1">
+                    <Image Source="Assets/infinite3.png"/>
+                </Button>
+                <Button Name="AboutButton" BorderThickness="0,0,0,0" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"
+                   Height="Auto" Width="Auto" Grid.Row="2" Grid.Column="0" Click="AboutButton_OnClick">
+                    <Image Source="Assets/appbar.information.circle.png"/>
+                    </Button>
+                <Button Name="SettingsButton" BorderThickness="0,0,0,0" HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Center"
+                   Height="Auto" Width="Auto" Grid.Row="2" Grid.Column="1" Click="SettingsButton_OnClick" >
+                <Image Source="Assets/appbar.cogs.png"/>
+                </Button>
+                <TextBlock Grid.Row="0" Grid.Column="0" 
+                           VerticalAlignment="Bottom" 
+                           HorizontalAlignment="Center"
+                           FontSize="15">
+                    Scientific Calculator</TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="1"
+                           VerticalAlignment="Bottom" 
+                           HorizontalAlignment="Center"
+                           FontSize="15">
+                    Unit Converter
+                </TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="0" 
+                           VerticalAlignment="Bottom" 
+                           HorizontalAlignment="Center"
+                           FontSize="15">
+                    Programmer's Calculator
+                </TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="1" 
+                           VerticalAlignment="Bottom" 
+                           HorizontalAlignment="Center"
+                           FontSize="15">
+                    Unorthodox Calculator
+                </TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="0" 
+                           VerticalAlignment="Bottom" 
+                           HorizontalAlignment="Center"
+                           FontSize="25">
+                   About
+                </TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="1" 
+                           VerticalAlignment="Bottom" 
+                           HorizontalAlignment="Center"
+                           FontSize="25">
+                   Settings
+                </TextBlock>
+                <Rectangle Fill="SeaGreen" IsHitTestVisible="False" Grid.Column="1" Grid.Row="1" Opacity="0.3"/>
+                <Rectangle Fill="OrangeRed"  IsHitTestVisible="False" Grid.Column="0" Grid.Row="1" Opacity="0.3"/>
+                <Rectangle Fill="MediumVioletRed"  IsHitTestVisible="False" Grid.Column="1" Grid.Row="0" Opacity="0.3"/>
+                <Rectangle Fill="MediumSlateBlue"  IsHitTestVisible="False" Grid.Column="0" Grid.Row="0" Opacity="0.3"/>
+                <Rectangle Fill="MediumSlateBlue"  IsHitTestVisible="False" Grid.Column="0" Grid.Row="2" Opacity="0.3"/>
+                <Rectangle Fill="MistyRose"  IsHitTestVisible="False" Grid.Column="1" Grid.Row="2" Opacity="0.3"/>
+            </Grid>
+
+        </PivotItem>
+    </Pivot>
 </Page>
